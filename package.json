@@ -1,0 +1,37 @@
+{
+  "name": "prgmtc",
+  "description": "Minimal developer friendly stack.",
+  "module": "app/index.tsx",
+  "type": "module",
+  "scripts": {
+    "build": "concurrently 'bun run build:*'",
+    "prebuild:app": "concurrently 'bun run static' 'tailwindcss -i app/main.css -o dist/main.css --minify'",
+    "build:app": "bun build app/index.tsx --outdir build/ --asset-naming 'dist/[name]-[hash].[ext]'",
+    "clean": "rm -rf build/ dist/",
+    "precompile": "concurrently 'bun run static' 'tailwindcss -i app/main.css -o dist/main.css --minify'",
+    "compile": "bun build --compile --minify ./app/index.tsx --outfile bin/app",
+    "dev": "concurrently 'bun run dev:*'",
+    "predev:app": "bun run static && [ ! -f 'dist/main.css' ] && bun tailwindcss -i app/main.css -o dist/main.css || true",
+    "dev:app": "bun --hot run app/index.tsx",
+    "dev:css": "bun tailwindcss -i app/main.css -o dist/main.css --watch",
+    "static": "mkdir -p 'dist' && concurrently 'bun run static:*'",
+    "static:alpinejs": "cp -p node_modules/alpinejs/dist/cdn.min.js dist/alpinejs.dep"
+  },
+  "dependencies": {
+    "hono": "^4.0.8"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.5.3",
+    "@types/alpinejs": "^3.13.6",
+    "@types/bun": "latest",
+    "alpinejs": "^3.13.6",
+    "autoprefixer": "^10.4.18",
+    "concurrently": "^8.2.2",
+    "postcss": "^8.4.35",
+    "tailwindcss": "^3.4.1",
+    "tailwindcss-animate": "^1.0.7"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
