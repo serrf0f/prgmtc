@@ -23,11 +23,13 @@ export function Home() {
             <AsyncComponent />
           </Suspense>
         </div>
-        <div class="flex space-x-4 items-center">
-          <Button type="button" x-on:click="count++">
-            Show reactivity
-          </Button>
-          <p x-text="count">{counter}</p>
+        <div class="flex justify-between items-center h-20">
+          <div class="flex space-x-4 items-center">
+            <Button type="button" x-on:click="count++">
+              Show reactivity
+            </Button>
+            <p x-text="count">{counter}</p>
+          </div>
           <DatePicker />
         </div>
         <div class="flex h-[1px] w-full bg-muted-foreground opacity-15">
@@ -92,5 +94,5 @@ export function Home() {
 
 async function AsyncComponent() {
   await new Promise((r) => setTimeout(r, 100));
-  return <div>Done!</div>;
+  return <div>Async component loaded!</div>;
 }

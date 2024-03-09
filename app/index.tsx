@@ -1,4 +1,4 @@
-import { type Context, Hono } from "hono";
+import { type Context, Hono, type MiddlewareHandler, type Next } from "hono";
 import { serveStatic } from "hono/bun";
 import { renderToReadableStream } from "hono/jsx/streaming";
 import { secureHeaders } from "hono/secure-headers";
@@ -11,10 +11,11 @@ app.use(
     xContentTypeOptions: "False",
   }),
 );
-app.use("/dist/*", serveStatic({ root: "./" }));
-app.use("/public/*", serveStatic({ root: "./" }));
 app.get("/", (c) => streamHtml(c, <Home />));
 app.get("/about", (c) => streamHtml(c, <About />));
+app.use(cacheAssets());
+app.use("/dist/*", serveStatic({ root: "./" }));
+app.use("/public/*", serveStatic({ root: "./" }));
 app.get("*", (c) =>
   c.req.path.startsWith("/$bunfs/root/")
     ? new Response(Bun.file(c.req.path.replaceAll("/..", "/")))
@@ -28,6 +29,16 @@ function streamHtml(c: Context, jsx: JSX.Element) {
       "Transfer-Encoding": "chunked",
     },
   });
+}
+
+function cacheAssets() {
+  const middleware: MiddlewareHandler = async (c, next) => {
+    await next();
+    if (import.meta.env.NODE_ENV !== "development") {
+      c.res.headers.set("Cache-Control", "max-age=86400");
+    }
+  };
+  return middleware;
 }
 
 export default app;

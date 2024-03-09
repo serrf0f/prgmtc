@@ -65,9 +65,7 @@
         --input: 240 3.7% 15.9%;
         --ring: 240 4.9% 83.9%;
     }
-}
 
-@layer base {
     * {
         @apply border-border;
     }
@@ -79,5 +77,9 @@
             max-width: 30rem;
             margin: 0 auto;
         }
+    }
+
+    [x-cloak] {
+        display: none !important;
     }
 }

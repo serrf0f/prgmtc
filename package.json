@@ -9,7 +9,7 @@
     "build:app": "bun build app/index.tsx --outdir build/ --asset-naming 'dist/[name]-[hash].[ext]'",
     "clean": "rm -rf build/ dist/",
     "precompile": "concurrently 'bun run static' 'tailwindcss -i app/main.css -o dist/main.css --minify'",
-    "compile": "bun build --compile --minify ./app/index.tsx --outfile bin/app",
+    "compile": "bun build --compile --minify ./app/index.tsx --outfile bin",
     "dev": "concurrently 'bun run dev:*'",
     "predev:app": "bun run static && [ ! -f 'dist/main.css' ] && bun tailwindcss -i app/main.css -o dist/main.css || true",
     "dev:app": "bun --hot run app/index.tsx",

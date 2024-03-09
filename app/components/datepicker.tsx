@@ -1,6 +1,5 @@
 // https://devdojo.com/pines/docs/date-picker
 export function DatePicker() {
-  const today = new Date().toISOString();
   return (
     <div
       x-data="{
@@ -90,7 +89,7 @@ export function DatePicker() {
       },
     }"
       x-init={`
-        currentDate = new Date("${today}");
+        currentDate = new Date();
         if (datePickerValue) {
             currentDate = new Date(Date.parse(datePickerValue));
         }
@@ -102,14 +101,8 @@ export function DatePicker() {
     `}
       x-cloak
     >
-      <div class="container px-4 py-2 mx-auto md:py-10">
-        <div class="w-full mb-5">
-          <label
-            for="datepicker"
-            class="block mb-1 text-sm font-medium text-neutral-500"
-          >
-            Select Date
-          </label>
+      <div class="container px-0 py-0 mx-auto">
+        <div class="w-full">
           <div class="relative w-[17rem]">
             <input
               x-ref="datePickerInput"
@@ -149,8 +142,9 @@ export function DatePicker() {
             <div
               {...{ "@click.away": "datePickerOpen = false" }}
               x-show="datePickerOpen == true"
+              style={{ display: "none" }}
               // x-transition=""
-              class="absolute top-0 left-0 max-w-lg p-4 mt-12 antialiased bg-white border rounded-lg shadow w-[17rem] border-neutral-200/70"
+              class="z-10 absolute top-0 left-0 max-w-lg p-4 mt-12 antialiased bg-white border rounded-lg shadow w-[17rem] border-neutral-200/70"
             >
               <div class="flex items-center justify-between mb-2">
                 <div>
