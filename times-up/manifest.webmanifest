@@ -1,0 +1,20 @@
+{
+  "name": "Times Up Sonore",
+  "short_name": "Times Up",
+  "description": "Jeu Times Up en français avec sons.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0d0e15",
+  "theme_color": "#0d0e15",
+  "categories": ["games", "entertainment"],
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
