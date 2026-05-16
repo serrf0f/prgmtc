@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="112" fill="#0d0e15"/>
+  <circle cx="256" cy="186" r="104" fill="#ffca3a"/>
+  <circle cx="256" cy="186" r="82" fill="#ffd85a"/>
+  <text x="256" y="215" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="92" font-weight="900" fill="#fff7df">45</text>
+  <rect x="84" y="330" width="344" height="72" rx="36" fill="#191b29"/>
+  <text x="256" y="379" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="42" font-weight="900" fill="#f7f3e8">TIMES UP</text>
+</svg>
